@@ -1,0 +1,99 @@
+{
+"output": "DP-2",
+  "layer": "top",
+ "tooltip": false,
+
+  "modules-left": ["clock", "hyprland/workspaces", "custom/steam"],
+  "modules-center": ["custom/cider-nowplaying", "custom/cava"],
+  "modules-right": ["custom/notification", "tray", "network", "pulseaudio", "custom/logout"],
+
+
+  "custom/cider-nowplaying": {
+    "exec": "~/.config/waybar/scripts/cider-nowplaying.sh",
+    "interval": 1,
+    "return-type": "text",
+    "format": "{}",
+    "on-click": "kitty --detach cava",
+    "tooltip": false
+},
+
+
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": false,
+    "format": "{icon}",
+    "show-special": false,
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "*": 3
+    },
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+
+
+
+  "custom/notification": {
+    "tooltip": true,
+    "format": "<span size='12pt'>{icon}</span>",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip": false,
+    "on-click": "kitty --detach tty-clock"
+
+  },
+
+   "tray": {
+    "icon-size": 15,
+    "spacing": 8,
+    "tooltip": false
+  },
+
+ "custom/logout": {
+    "format": "󰍃",
+    "on-click": "wlogout",
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": "󰤨",
+    "format-ethernet": "󰤨 :3",
+    "format-disconnected": "󰤭",
+    "tooltip": false
+  },
+
+  "custom/steam": {
+  "exec": "~/.config/waybar/scripts/steam_waybar.sh",
+  "interval": 1,
+  "return-type": "string",
+  "format": "{}",
+  "on-click":"hyprctl dispatch focuswindow class:steam",
+  "tooltip": false
+},
+"pulseaudio": {
+"tooltip": false,
+"format": "󰋎 {volume}%",
+"on-click": "kitty --detach pulsemixer"
+},
+}
+
+
